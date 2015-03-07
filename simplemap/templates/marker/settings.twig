@@ -1,30 +1,58 @@
 {% import "_includes/forms" as forms %}
-<hr />
+
+{% set latitude = (settings.defaultLat) ? settings.defaultLat : '-35.725112' %}
+{% set longitude = (settings.defaultLong) ? settings.defaultLong : '174.323708' %}
+{% set zoom = (settings.zoom) ? settings.zoom : '12' %}
+
 <h2>Set the default map location:</h2>
-{{ forms.textField({
+<div class="map_wrapper" id="map-wrapper" 
+	data-defaultlat="{{ latitude }}" 
+	data-defaultlong="{{ longitude }}" 
+	data-defaultzoom="{{ zoom }}" 
+	data-latitude="{{ latitude }}" 
+	data-longitude="{{ longitude }}"
+	data-mapelement="{{id}}" 
+>
+	<div class="map-address-search">
+		<input type="text" class="text" placeholder="Address Search">
+	</div>
+
+	<div class="map_canvas_inner" id="{{id}}"></div>
+
+	<div class="lat_long_wrapper">
+
+	{{ forms.textField({
 	label:        "Latitude"|t,
 	id:           'defaultLat',
 	name:         'defaultLat',
+	class:		  'location-latitude',
 	instructions: ""|t,
 	value:        settings.defaultLat,
 	errors:       settings.getErrors('defaultLat')
-}) }}
+	}) }}
 
-{{ forms.textField({
-	label:        "Longitude"|t,
-	id:           'defaultLong',
-	name:         'defaultLong',
-	instructions: ""|t,
-	value:        settings.defaultLong,
-	errors:       settings.getErrors('defaultLong')
-}) }}
+	{{ forms.textField({
+		label:        "Longitude"|t,
+		id:           'defaultLong',
+		name:         'defaultLong',
+		class:		  'location-longitude',
+		instructions: ""|t,
+		value:        settings.defaultLong,
+		errors:       settings.getErrors('defaultLong')
+	}) }}
 
-{{ forms.textField({
-	label:        "Zoom"|t,
-	id:           'zoom',
-	name:         'zoom',
-	size:		  '2',
-	instructions: ""|t,
-	value:        settings.zoom,
-	errors:       settings.getErrors('zoom')
-}) }}
+	{{ forms.textField({
+		label:        "Zoom"|t,
+		id:           'zoom',
+		name:         'zoom',
+		class:		  'location-zoom',
+		size:		  '2',
+		instructions: ""|t,
+		value:        settings.zoom,
+		errors:       settings.getErrors('zoom')
+	}) }}
+	</div>
+
+</div>
+
+

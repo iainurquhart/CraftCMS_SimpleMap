@@ -1,40 +1,42 @@
-<script>
-	var map;
-	var defaultLat = {{ settings.defaultLat }};
-	var defaultLong = {{ settings.defaultLong }};
-	var defaultZoom = {{ settings.zoom }};
-	var inputName = 'fields[{{ name }}]';
-	var mapContainer = '{{ id }}';
-	var latitude = '{{ value.latitude }}';
-	var longitude = '{{ value.longitude }}';
-</script>
-
-
-<div class="map_wrapper">
-	<div class="map-address-search">
-		<input type="text" class="text" placeholder="Address Search" id="address-search-string">
-	</div>
-	<div id="map_canvas-{{ id }}" class="map_canvas_inner"></div>
-</div>
 
 {% import "_includes/forms" as forms %}
+{% set latitude = value.latitude is defined ? value.latitude : settings.defaultLat %}
+{% set longitude = value.longitude is defined ? value.longitude : settings.defaultLong %}
 
-<div class="lat_long_wrapper">
-{{ forms.textField({
-	label:        "Latitude"|t,
-	id:           id~'-latitude',
-	name:         name~'[latitude]',
-	instructions: ""|t,
-	value:        value.latitude,
-	errors:       settings.getErrors('latitude')
-}) }}
-{{ forms.textField({
-	label:        "Longitude"|t,
-	id:           id~'-longitude',
-	name:         name~'[longitude]',
-	instructions: ""|t,
-	value:        value.longitude,
-	errors:       settings.getErrors('longitude')
-}) }}
+<div class="map_wrapper" id="{{ id }}-map-wrapper" 
+	data-defaultlat="{{ settings.defaultLat }}" 
+	data-defaultlong="{{ settings.defaultLong }}" 
+	data-defaultzoom="{{ settings.zoom }}" 
+	data-latitude="{{ latitude }}" 
+	data-longitude="{{ longitude }}"
+	data-mapelement="{{ id }}-map" 
+>
+	<div class="map-address-search">
+		<input type="text" class="text" placeholder="Address Search">
+	</div>
+
+	<div class="map_canvas_inner" id="{{ id }}-map"></div>
+
+	<div class="lat_long_wrapper">
+	{{ forms.textField({
+		label:        "Latitude"|t,
+		id:           id~'-latitude',
+		class:		  'location-latitude',
+		name:         name~'[latitude]',
+		instructions: ""|t,
+		value:        latitude,
+		errors:       settings.getErrors('latitude')
+	}) }}
+	{{ forms.textField({
+		label:        "Longitude"|t,
+		id:           id~'-longitude',
+		class:		  'location-longitude',
+		name:         name~'[longitude]',
+		instructions: ""|t,
+		value:        longitude,
+		errors:       settings.getErrors('longitude')
+	}) }}
+	</div>
+
 </div>
 

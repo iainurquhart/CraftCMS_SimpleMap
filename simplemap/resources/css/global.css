@@ -1,16 +1,23 @@
-.map_canvas_inner {height: 600px !important; }
+.map_canvas_inner {height: 600px !important; display: block; width: 100%;}
+.matrixblock .map_canvas_inner {height: 300px !important;}
 .map_wrapper { border: 1px solid #d3d4d6; margin-bottom: 20px;}
 .map_wrapper { position: relative;}
 .contextmenu {position: absolute;  font-size: 10px; font-weight: bold; margin: 20px;}
 .contextmenu a {display: block; padding: 10px; background: #fff; border-radius: 10px;}
 .contextmenu a:hover {cursor: pointer;}
 
-.map-address-search {
+.map-address-search,
+.lat_long_wrapper {
 	padding: 20px;
 	background: #ebedef;
 	border-bottom: 1px solid #d3d4d6;
 }
 
-#fields-address-search-string {
+.lat_long_wrapper {
+	border-top: 1px solid #d3d4d6;
+	border-bottom: none;
+}
+
+.map-address-search input {
 	width: 60%;
 }
