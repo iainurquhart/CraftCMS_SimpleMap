@@ -1,0 +1,40 @@
+<script>
+	var map;
+	var defaultLat = {{ settings.defaultLat }};
+	var defaultLong = {{ settings.defaultLong }};
+	var defaultZoom = {{ settings.zoom }};
+	var inputName = 'fields[{{ name }}]';
+	var mapContainer = '{{ id }}';
+	var latitude = '{{ value.latitude }}';
+	var longitude = '{{ value.longitude }}';
+</script>
+
+
+<div class="map_wrapper">
+	<div class="map-address-search">
+		<input type="text" class="text" placeholder="Address Search" id="address-search-string">
+	</div>
+	<div id="map_canvas-{{ id }}" class="map_canvas_inner"></div>
+</div>
+
+{% import "_includes/forms" as forms %}
+
+<div class="lat_long_wrapper">
+{{ forms.textField({
+	label:        "Latitude"|t,
+	id:           id~'-latitude',
+	name:         name~'[latitude]',
+	instructions: ""|t,
+	value:        value.latitude,
+	errors:       settings.getErrors('latitude')
+}) }}
+{{ forms.textField({
+	label:        "Longitude"|t,
+	id:           id~'-longitude',
+	name:         name~'[longitude]',
+	instructions: ""|t,
+	value:        value.longitude,
+	errors:       settings.getErrors('longitude')
+}) }}
+</div>
+

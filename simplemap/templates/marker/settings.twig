@@ -1,0 +1,30 @@
+{% import "_includes/forms" as forms %}
+<hr />
+<h2>Set the default map location:</h2>
+{{ forms.textField({
+	label:        "Latitude"|t,
+	id:           'defaultLat',
+	name:         'defaultLat',
+	instructions: ""|t,
+	value:        settings.defaultLat,
+	errors:       settings.getErrors('defaultLat')
+}) }}
+
+{{ forms.textField({
+	label:        "Longitude"|t,
+	id:           'defaultLong',
+	name:         'defaultLong',
+	instructions: ""|t,
+	value:        settings.defaultLong,
+	errors:       settings.getErrors('defaultLong')
+}) }}
+
+{{ forms.textField({
+	label:        "Zoom"|t,
+	id:           'zoom',
+	name:         'zoom',
+	size:		  '2',
+	instructions: ""|t,
+	value:        settings.zoom,
+	errors:       settings.getErrors('zoom')
+}) }}
