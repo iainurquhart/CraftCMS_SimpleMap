@@ -17,5 +17,5 @@ eg `{{ entry.location.latitude }}`
 
 * * *
 
-Copyright (c) 2012 Iain Urquhart
+Copyright (c) 2015 Iain Urquhart
 http://iain.co.nz
