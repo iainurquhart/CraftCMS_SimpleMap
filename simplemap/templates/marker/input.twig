@@ -2,11 +2,12 @@
 {% import "_includes/forms" as forms %}
 {% set latitude = value.latitude is defined ? value.latitude : settings.defaultLat %}
 {% set longitude = value.longitude is defined ? value.longitude : settings.defaultLong %}
+{% set zoom = value.zoom is defined ? value.zoom : settings.zoom %}
 
 <div class="map_wrapper" id="{{ id }}-map-wrapper" 
 	data-defaultlat="{{ settings.defaultLat }}" 
 	data-defaultlong="{{ settings.defaultLong }}" 
-	data-defaultzoom="{{ settings.zoom }}" 
+	data-defaultzoom="{{ zoom }}" 
 	data-latitude="{{ latitude }}" 
 	data-longitude="{{ longitude }}"
 	data-mapelement="{{ id }}-map" 
@@ -35,6 +36,16 @@
 		instructions: ""|t,
 		value:        longitude,
 		errors:       settings.getErrors('longitude')
+	}) }}
+	{{ forms.textField({
+		label:        "Zoom"|t,
+		id:           'zoom',
+		name:         name~'[zoom]',
+		class:		  'location-zoom',
+		size:		  '2',
+		instructions: ""|t,
+		value:        zoom,
+		errors:       settings.getErrors('zoom')
 	}) }}
 	</div>
 
